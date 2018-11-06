@@ -41,5 +41,8 @@
     <ClInclude Include="testFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="testFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

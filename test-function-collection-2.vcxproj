@@ -128,6 +128,7 @@
     <ClInclude Include="cg_user.h" />
     <ClInclude Include="genericFunctions.h" />
     <ClInclude Include="parallelTestFunctions.h" />
+    <ClInclude Include="testFunction.h" />
     <ClInclude Include="testFunctions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

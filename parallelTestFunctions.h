@@ -11,7 +11,7 @@ namespace parallel {
 		for (i = begin; i < end; i++)
 		{
 			group1 = pow(x[i], 2) + pow(x[index], 2);
-			fx += group1*group1 + 3.0 - 4.0*x[i];
+			fx += group1 * group1 + 3.0 - 4.0*x[i];
 			g[i] = -4.0 + 4.0*group1*x[i];
 			*sum += 4.0*group1*x[index];
 		}
@@ -49,7 +49,7 @@ namespace parallel {
 		for (i = begin; i < end; ++i)
 		{
 			group1 = pow(x[i], 2) + pow(x[index], 2);
-			fx += group1*group1 + 3.0 - 4.0*x[i];
+			fx += group1 * group1 + 3.0 - 4.0*x[i];
 		}
 		return fx;
 	}
@@ -79,7 +79,7 @@ namespace parallel {
 			group1 = 3.0 - 4.0*x[i];
 			group2 = pow(x[i], 2) + 2 * pow(x[i + 1], 2) + 3 * pow(x[i + 2], 2)
 				+ 4 * pow(x[i + 3], 2) + 5 * pow(x[index], 2);
-			fx += group1*group1 + group2*group2;
+			fx += group1 * group1 + group2 * group2;
 			g[i] += -8.0*group1 + 4.0*group2*x[i];
 			g[i + 1] += 8.0*group2*x[i + 1];
 			g[i + 2] += 12.0*group2*x[i + 2];
@@ -158,7 +158,7 @@ namespace parallel {
 			group1 = 3.0 - 4.0*x[i];
 			group2 = pow(x[i], 2) + 2 * pow(x[i + 1], 2) + 3 * pow(x[i + 2], 2)
 				+ 4 * pow(x[i + 3], 2) + 5 * pow(x[index - 1], 2);
-			fx += group1*group1 + group2*group2;
+			fx += group1 * group1 + group2 * group2;
 		}
 		return fx;
 	}
@@ -307,7 +307,7 @@ namespace parallel {
 			g[i] += 2.0*item;
 			g[i + 1] -= 2.0*item;
 			item = (x[i - 1] - x[i]);
-			fx += item*item;
+			fx += item * item;
 		}
 		return fx;
 
@@ -320,17 +320,17 @@ namespace parallel {
 			double item;
 			double fx = (0.0);
 			item = x[0] - 1;
-			fx += item*item;
+			fx += item * item;
 			g[0] = 2.0*item;
 			for (i = 1; i < n - 1; i++)
 				g[i] = 0.0;
 			item = x[n - 1] - 1;
-			fx += item*item;
+			fx += item * item;
 			g[n - 1] = 2.0*item;
 			for (i = 1; i < n - 1; i++)
 			{
 				item = (x[i] - x[i + 1]);
-				fx += item*item;
+				fx += item * item;
 				g[i] += 2.0*item;
 				g[i + 1] -= 2.0*item;
 			}
@@ -339,10 +339,10 @@ namespace parallel {
 		double fx = 0.0;
 		double item;
 		item = x[0] - 1;
-		fx += item*item;
+		fx += item * item;
 		g[0] = 2.0*item;
 		item = x[n - 1] - 1;
-		fx += item*item;
+		fx += item * item;
 		fx += valgradParallel(DIXON3DQvalgradRanged, g, x, n - 1);
 		INT block_start = 0, i;
 		for (i = 0; i < (num_threads - 1); ++i)
@@ -397,7 +397,7 @@ namespace parallel {
 		for (i = begin; i < end; i++)
 		{
 			item = (x[i] - x[i + 1]);
-			fx += item*item;
+			fx += item * item;
 		}
 		return fx;
 	}
@@ -409,22 +409,22 @@ namespace parallel {
 			double item;
 			double fx = (0.0);
 			item = x[0] - 1;
-			fx += item*item;
+			fx += item * item;
 			item = x[n - 1] - 1;
-			fx += item*item;
+			fx += item * item;
 			for (i = 1; i < n - 1; i++)
 			{
 				item = (x[i] - x[i + 1]);
-				fx += item*item;
+				fx += item * item;
 			}
 			return fx;
 		}
 		double fx = 0.0;
 		double item;
 		item = x[0] - 1;
-		fx += item*item;
+		fx += item * item;
 		item = x[n - 1] - 1;
-		fx += item*item;
+		fx += item * item;
 		fx += valueParallel(DIXON3DQvalueRanged, x, n - 1);
 		return fx;
 	}
@@ -854,7 +854,7 @@ namespace parallel {
 		for (int i = begin; i < end - 1; ++i)
 		{
 			item = pow(x[i], 2.0) + pow(x[i + 1], 2.0);
-			fx += item*item + (3 - 4.0*x[i]);
+			fx += item * item + (3 - 4.0*x[i]);
 			g[i] += 4.0*item*x[i] - 4.0;
 			g[i + 1] += 4.0*item*x[i + 1];
 		}
@@ -867,7 +867,7 @@ namespace parallel {
 		for (int i = block_size - 1; i < n - 1; i += block_size)
 		{
 			item = pow(x[i], 2.0) + pow(x[i + 1], 2.0);
-			fx += item*item + (3 - 4.0*x[i]);
+			fx += item * item + (3 - 4.0*x[i]);
 			g[i] += 4.0*item*x[i] - 4.0;
 			g[i + 1] += 4.0*item*x[i + 1];
 		}
@@ -907,7 +907,7 @@ namespace parallel {
 		for (i = begin; i < end; i++)
 		{
 			item = pow(x[i], 2.0) + pow(x[i + 1], 2.0);
-			fx += item*item + (3 - 4.0*x[i]);
+			fx += item * item + (3 - 4.0*x[i]);
 		}
 		return fx;
 
@@ -944,7 +944,7 @@ namespace parallel {
 		for (i = begin; i < end - 1; i++)
 		{
 			item = x[i + 1] - x[i] + 1 - pow(x[i], 2);
-			fx += item*item;
+			fx += item * item;
 			g[i] += 20.0*item*(-2.0*x[i] - 1.0);
 			g[i + 1] += 20.0*item;
 		}
@@ -961,7 +961,7 @@ namespace parallel {
 		double item;
 		for (int i = block_size - 1; i < n - 1; i = i + block_size) {
 			item = x[i + 1] - x[i] + 1 - pow(x[i], 2);
-			fx += item*item;
+			fx += item * item;
 			g[i] += 20.0*item*(-2.0*x[i] - 1.0);
 			g[i + 1] += 20.0*item;
 		}
@@ -1019,7 +1019,7 @@ namespace parallel {
 		for (i = begin; i < end; i++)
 		{
 			item = x[i + 1] - x[i] + 1 - pow(x[i], 2);
-			fx += item*item;
+			fx += item * item;
 		}
 		return 100.0*fx;
 	}
@@ -1055,7 +1055,7 @@ namespace parallel {
 		{
 			item1 = (-13 + x[i] + ((5 - x[i + 1])*x[i + 1] - 2.0)*x[i + 1]);
 			item2 = (-29 + x[i] + ((1 + x[i + 1])*x[i + 1] - 14.0)*x[i + 1]);
-			fx += item1*item1 + item2*item2;
+			fx += item1 * item1 + item2 * item2;
 			g[i] += 2.0*item1 + 2.0*item2;
 			g[i + 1] += 2.0*item1*(10 * x[i + 1] - 3.0*x[i + 1] * x[i + 1] - 2.0) +
 				2.0*item2*(2 * x[i + 1] + 3.0*x[i + 1] * x[i + 1] - 14.0);
@@ -1070,7 +1070,7 @@ namespace parallel {
 		{
 			item1 = (-13 + x[i] + ((5 - x[i + 1])*x[i + 1] - 2.0)*x[i + 1]);
 			item2 = (-29 + x[i] + ((1 + x[i + 1])*x[i + 1] - 14.0)*x[i + 1]);
-			fx += item1*item1 + item2*item2;
+			fx += item1 * item1 + item2 * item2;
 			g[i] += 2.0*item1 + 2.0*item2;
 			g[i + 1] += 2.0*item1*(10 * x[i + 1] - 3.0*x[i + 1] * x[i + 1] - 2.0) +
 				2.0*item2*(2 * x[i + 1] + 3.0*x[i + 1] * x[i + 1] - 14.0);
@@ -1116,7 +1116,7 @@ namespace parallel {
 		{
 			item1 = (-13 + x[i] + ((5 - x[i + 1])*x[i + 1] - 2.0)*x[i + 1]);
 			item2 = (-29 + x[i] + ((1 + x[i + 1])*x[i + 1] - 14.0)*x[i + 1]);
-			fx += item1*item1 + item2*item2;
+			fx += item1 * item1 + item2 * item2;
 		}
 		return fx;
 
@@ -1148,7 +1148,7 @@ namespace parallel {
 		{
 			item1 = sin(2.0*x[i]);
 			item2 = sin(2.0*x[i + 1]);
-			fx += item1*item1 *item2*item2 + 0.05*(pow(x[i], 2) + pow(x[i + 1], 2));
+			fx += item1 * item1 *item2*item2 + 0.05*(pow(x[i], 2) + pow(x[i + 1], 2));
 			g[i] += 4.0*item1*cos(2.0*x[i]) *item2*item2 + 0.1*x[i];
 			g[i + 1] += 4.0*item2*cos(2.0*x[i + 1])* item1*item1 + 0.1*x[i + 1];
 		}
@@ -1163,7 +1163,7 @@ namespace parallel {
 		{
 			item1 = sin(2.0*x[i]);
 			item2 = sin(2.0*x[i + 1]);
-			fx += item1*item1 *item2*item2 + 0.05*(pow(x[i], 2) + pow(x[i + 1], 2));
+			fx += item1 * item1 *item2*item2 + 0.05*(pow(x[i], 2) + pow(x[i + 1], 2));
 			g[i] += 4.0*item1*cos(2.0*x[i]) *item2*item2 + 0.1*x[i];
 			g[i + 1] += 4.0*item2*cos(2.0*x[i + 1])* item1*item1 + 0.1*x[i + 1];
 		}
@@ -1206,7 +1206,7 @@ namespace parallel {
 		{
 			item1 = sin(2.0*x[i]);
 			item2 = sin(2.0*x[i + 1]);
-			fx += item1*item1 *item2*item2 + 0.05*(pow(x[i], 2) + pow(x[i + 1], 2));
+			fx += item1 * item1 *item2*item2 + 0.05*(pow(x[i], 2) + pow(x[i + 1], 2));
 		}
 		return fx;
 
@@ -1238,7 +1238,7 @@ namespace parallel {
 		{
 			item1 = 10.0 * (x[i] - x[i - 1] * x[i - 1]);
 			item2 = x[i] - 1.0;
-			fx += item1*item1 + item2*item2;
+			fx += item1 * item1 + item2 * item2;
 			g[i - 1] -= 40.0*item1 * x[i - 1];
 			g[i] += 20 * item1 + 2 * item2;
 		}
@@ -1301,7 +1301,7 @@ namespace parallel {
 		{
 			item1 = 10.0 * (x[i] - x[i - 1] * x[i - 1]);
 			item2 = x[i] - 1.0;
-			fx += item1*item1 + item2*item2;
+			fx += item1 * item1 + item2 * item2;
 		}
 		return fx;
 	}
@@ -1329,7 +1329,7 @@ namespace parallel {
 		{
 			item1 = 2.0*(x[i] * x[i] - x[0]);
 			item2 = (x[i] - 1);
-			fx += item1*item1 + item2*item2;
+			fx += item1 * item1 + item2 * item2;
 			g[i] = 8.0*item1*x[i] + 2.0*item2;
 			*sum -= 4.0*item1;
 		}
@@ -1366,7 +1366,7 @@ namespace parallel {
 		{
 			item1 = 2.0*(x[i] * x[i] - x[0]);
 			item2 = (x[i] - 1);
-			fx += item1*item1 + item2*item2;
+			fx += item1 * item1 + item2 * item2;
 		}
 		return fx;
 	}
@@ -1412,11 +1412,11 @@ namespace parallel {
 		item = x[0] - x[1];
 		g[0] += 2.0*item;
 		g[1] += 2.0*item;
-		fx += item*item;
+		fx += item * item;
 		item = x[n - 2] + x[n - 1];
 		g[n - 2] += 2.0 * item;
 		g[n - 1] += 2.0 * item;
-		fx += item*item;
+		fx += item * item;
 		return fx;
 
 	}
@@ -1471,9 +1471,9 @@ namespace parallel {
 			double item;
 			double fx = (0.0);
 			item = x[0] - x[1];
-			fx += item*item;
+			fx += item * item;
 			item = x[n - 2] + x[n - 1];
-			fx += item*item;
+			fx += item * item;
 			for (i = 0; i < n - 2; i++)
 			{
 				item = x[i] + x[i + 1] + x[n - 1];
@@ -1485,9 +1485,9 @@ namespace parallel {
 		double item;
 		fx += valueParallelOneCongestion(NONDQUARvalueRanged, x, n - 1, n);
 		item = x[0] - x[1];
-		fx += item*item;
+		fx += item * item;
 		item = x[n - 2] + x[n - 1];
-		fx += item*item;
+		fx += item * item;
 		return fx;
 	}
 
@@ -1518,7 +1518,7 @@ namespace parallel {
 		for (i = begin; i < end; i++)
 		{
 			item = (i + 1)*x[i];
-			fx += item*item;
+			fx += item * item;
 			g[i] = 2.0*item*(i + 1);
 		}
 		return fx;
@@ -1573,7 +1573,7 @@ namespace parallel {
 		for (i = begin; i < end; i++)
 		{
 			item = (i + 1)*x[i];
-			fx += item*item;
+			fx += item * item;
 		}
 		return fx;
 	}
@@ -1594,7 +1594,7 @@ namespace parallel {
 	{
 		initializer(n, 2000);
 		INT i;
-		for (i = 0; i<n; i++)
+		for (i = 0; i < n; i++)
 			x[i] = 1.0;
 
 	}
@@ -1694,158 +1694,159 @@ namespace parallel {
 			x[i + 1] = 1.0;
 		}
 	}
-}
 
-const INT ParallelTestNumber = 45;
-struct testFunction paralleltest[45];
+	const INT ParallelTestNumber = 45;
+	struct testFunction paralleltest[45];
 
-void makeParallelTestCollection(struct testFunction* t)
-{
-	//1-ARWHEAD
-	test[0].size = 5000;
-	strcpy(test[0].name, "ARWHEAD");
-	test[0].value = parallel::ARWHEADvalue;
-	test[0].grad = parallel::ARWHEADgrad;
-	test[0].valgrad = parallel::ARWHEADvalgrad;
-	test[0].StartingGess = parallel::ARWHEADStartingGess;
-	//2-BDQRTIC
-	test[1].size = 5000;
-	strcpy(test[1].name, "BDQRTIC");
-	test[1].value = parallel::BDQRTICvalue;
-	test[1].grad = parallel::BDQRTICgrad;
-	test[1].valgrad = parallel::BDQRTICvalgrad;
-	test[1].StartingGess = parallel::BDQRTICStartingGess;
-	//3-BROYDN7D
-	//4-BRYBND
-	//5-CHAINWOO
-	//6-COSINE
-	test[5].size = 10000;
-	strcpy(test[5].name, "COSINE");
-	test[5].value = parallel::COSINEvalue;
-	test[5].grad = parallel::COSINEgrad;
-	test[5].valgrad = parallel::COSINEvalgrad;
-	test[5].StartingGess = parallel::COSINEStartingGess;
-	//7-CRAGGLVY
-	//8-CURLY10
-	//9-CURLY20
-	//10-CURLY30
-	//11-DIXMAANA
-	//12-DIXMAANB
-	//13-DIXMAANC
-	//14-DIXMAAND
-	//15-DIXMAANE
-	//16-DIXMAANF
-	//17-DIXMAANG
-	//18-DIXMAANH
-	//19-DIXMAANI
-	//20-DIXMAANJ
-	//21-DIXMAANK
-	//22-DIXMAANL
-	//23-DIXON3DQ
-	test[22].size = 5000;
-	strcpy(test[22].name, "DIXON3DQ");
-	test[22].value = parallel::DIXON3DQvalue;
-	test[22].grad = parallel::DIXON3DQgrad;
-	test[22].valgrad = parallel::DIXON3DQvalgrad;
-	test[22].StartingGess = parallel::DIXON3DQStartingGess;
-	//24-DQDRTIC
-	test[23].size = 10000;
-	strcpy(test[23].name, "DQDRTIC");
-	test[23].value = parallel::DQDRTICvalue;
-	test[23].grad = parallel::DQDRTICgrad;
-	test[23].valgrad = parallel::DQDRTICvalgrad;
-	test[23].StartingGess = parallel::DQDRTICStartingGess;
-	//25-DQRTIC
-	test[24].size = 100000;
-	strcpy(test[24].name, "DQRTIC");
-	test[24].value = parallel::DQRTICvalue;
-	test[24].grad = parallel::DQRTICgrad;
-	test[24].valgrad = parallel::DQRTICvalgrad;
-	test[24].StartingGess = parallel::DQRTICStartingGess;
-	//26-EDENSCH
-	test[25].size = 2000;
-	strcpy(test[25].name, "EDENSCH");
-	test[25].value = parallel::EDENSCHvalue;
-	test[25].grad = parallel::EDENSCHgrad;
-	test[25].valgrad = parallel::EDENSCHvalgrad;
-	test[25].StartingGess = parallel::EDENSCHStartingGess;
-	//27-EG2
-	test[26].size = 5000;
-	strcpy(test[26].name, "EG2");
-	test[26].value = parallel::EG2value;
-	test[26].grad = parallel::EG2grad;
-	test[26].valgrad = parallel::EG2valgrad;
-	test[26].StartingGess = parallel::EG2StartingGess;
-	//28-ENGVAL1
-	test[27].size = 5000;
-	strcpy(test[27].name, "ENGVAL1");
-	test[27].value = parallel::ENGVAL1value;
-	test[27].grad = parallel::ENGVAL1grad;
-	test[27].valgrad = parallel::ENGVAL1valgrad;
-	test[27].StartingGess = parallel::ENGVAL1StartingGess;
-	//EXTROSNB
-	//FLETCHR
-	test[29].size = 1000;
-	strcpy(test[29].name, "FLETCHR");
-	test[29].value = parallel::FLETCHRvalue;
-	test[29].grad = parallel::FLETCHRgrad;
-	test[29].valgrad = parallel::FLETCHRvalgrad;
-	test[29].StartingGess = parallel::FLETCHRStartingGess;
-	//31-FREUROTH
-	test[30].size = 5000;
-	strcpy(test[30].name, "FREUROTH");
-	test[30].value = parallel::FREUROTHvalue;
-	test[30].grad = parallel::FREUROTHgrad;
-	test[30].valgrad = parallel::FREUROTHvalgrad;
-	test[30].StartingGess = parallel::FREUROTHStartingGess;
-	//32-GENHUMPS
-	test[31].size = 5000;
-	strcpy(test[31].name, "GENHUMPS");
-	test[31].value = parallel::GENHUMPSvalue;
-	test[31].grad = parallel::GENHUMPSgrad;
-	test[31].valgrad = parallel::GENHUMPSvalgrad;
-	test[31].StartingGess = parallel::GENHUMPSStartingGess;
-	//33-GENROSE
-	test[32].size = 1000;
-	strcpy(test[32].name, "GENROSE");
-	test[32].value = parallel::GENROSEvalue;
-	test[32].grad = parallel::GENROSEgrad;
-	test[32].valgrad = parallel::GENROSEvalgrad;
-	test[32].StartingGess = parallel::GENROSEStartingGess;
-	//34-LIARWDH
-	test[33].size = 5000;
-	strcpy(test[33].name, "LIARWDH");
-	test[33].value = parallel::LIARWDHvalue;
-	test[33].grad = parallel::LIARWDHgrad;
-	test[33].valgrad = parallel::LIARWDHvalgrad;
-	test[33].StartingGess = parallel::LIARWDHStartingGess;
-	//35-MOREBV
-	//36-NONCVXU2
-	//37-NONDIA
-	//38-NONDQUAR
-	test[37].size = 10000;
-	strcpy(test[37].name, "NONDQUAR");
-	test[37].value = parallel::NONDQUARvalue;
-	test[37].grad = parallel::NONDQUARgrad;
-	test[37].valgrad = parallel::NONDQUARvalgrad;
-	test[37].StartingGess = parallel::NONDQUARStartingGess;
-	//39-PENALTY1
-	//40-PENALTY2
-	//41-POWER
-	test[40].size = 1000;
-	strcpy(test[40].name, "POWER");
-	test[40].value = parallel::POWERvalue;
-	test[40].grad = parallel::POWERgrad;
-	test[40].valgrad = parallel::POWERvalgrad;
-	test[40].StartingGess = parallel::POWERStartingGess;
-	//42-QARTC
-	//43-SROSENBR
-	test[42].size = 10000;
-	strcpy(test[42].name, "SROSENBR");
-	test[42].value = parallel::SROSENBRvalue;
-	test[42].grad = parallel::SROSENBRgrad;
-	test[42].valgrad = parallel::SROSENBRvalgrad;
-	test[42].StartingGess = parallel::SROSENBRStartingGess;
-	//44-TRIDIA
-	//45-WOODS
+	void makeParallelTestCollection(struct testFunction* t)
+	{
+		//1-ARWHEAD
+		paralleltest[0].size = 5000;
+		strcpy(paralleltest[0].name, "ARWHEAD");
+		paralleltest[0].value = parallel::ARWHEADvalue;
+		paralleltest[0].grad = parallel::ARWHEADgrad;
+		paralleltest[0].valgrad = parallel::ARWHEADvalgrad;
+		paralleltest[0].StartingGess = parallel::ARWHEADStartingGess;
+		//2-BDQRTIC
+		paralleltest[1].size = 5000;
+		strcpy(paralleltest[1].name, "BDQRTIC");
+		paralleltest[1].value = parallel::BDQRTICvalue;
+		paralleltest[1].grad = parallel::BDQRTICgrad;
+		paralleltest[1].valgrad = parallel::BDQRTICvalgrad;
+		paralleltest[1].StartingGess = parallel::BDQRTICStartingGess;
+		//3-BROYDN7D
+		//4-BRYBND
+		//5-CHAINWOO
+		//6-COSINE
+		paralleltest[5].size = 10000;
+		strcpy(paralleltest[5].name, "COSINE");
+		paralleltest[5].value = parallel::COSINEvalue;
+		paralleltest[5].grad = parallel::COSINEgrad;
+		paralleltest[5].valgrad = parallel::COSINEvalgrad;
+		paralleltest[5].StartingGess = parallel::COSINEStartingGess;
+		//7-CRAGGLVY
+		//8-CURLY10
+		//9-CURLY20
+		//10-CURLY30
+		//11-DIXMAANA
+		//12-DIXMAANB
+		//13-DIXMAANC
+		//14-DIXMAAND
+		//15-DIXMAANE
+		//16-DIXMAANF
+		//17-DIXMAANG
+		//18-DIXMAANH
+		//19-DIXMAANI
+		//20-DIXMAANJ
+		//21-DIXMAANK
+		//22-DIXMAANL
+		//23-DIXON3DQ
+		paralleltest[22].size = 5000;
+		strcpy(paralleltest[22].name, "DIXON3DQ");
+		paralleltest[22].value = parallel::DIXON3DQvalue;
+		paralleltest[22].grad = parallel::DIXON3DQgrad;
+		paralleltest[22].valgrad = parallel::DIXON3DQvalgrad;
+		paralleltest[22].StartingGess = parallel::DIXON3DQStartingGess;
+		//24-DQDRTIC
+		paralleltest[23].size = 10000;
+		strcpy(paralleltest[23].name, "DQDRTIC");
+		paralleltest[23].value = parallel::DQDRTICvalue;
+		paralleltest[23].grad = parallel::DQDRTICgrad;
+		paralleltest[23].valgrad = parallel::DQDRTICvalgrad;
+		paralleltest[23].StartingGess = parallel::DQDRTICStartingGess;
+		//25-DQRTIC
+		paralleltest[24].size = 100000;
+		strcpy(paralleltest[24].name, "DQRTIC");
+		paralleltest[24].value = parallel::DQRTICvalue;
+		paralleltest[24].grad = parallel::DQRTICgrad;
+		paralleltest[24].valgrad = parallel::DQRTICvalgrad;
+		paralleltest[24].StartingGess = parallel::DQRTICStartingGess;
+		//26-EDENSCH
+		paralleltest[25].size = 2000;
+		strcpy(paralleltest[25].name, "EDENSCH");
+		paralleltest[25].value = parallel::EDENSCHvalue;
+		paralleltest[25].grad = parallel::EDENSCHgrad;
+		paralleltest[25].valgrad = parallel::EDENSCHvalgrad;
+		paralleltest[25].StartingGess = parallel::EDENSCHStartingGess;
+		//27-EG2
+		paralleltest[26].size = 5000;
+		strcpy(paralleltest[26].name, "EG2");
+		paralleltest[26].value = parallel::EG2value;
+		paralleltest[26].grad = parallel::EG2grad;
+		paralleltest[26].valgrad = parallel::EG2valgrad;
+		paralleltest[26].StartingGess = parallel::EG2StartingGess;
+		//28-ENGVAL1
+		paralleltest[27].size = 5000;
+		strcpy(paralleltest[27].name, "ENGVAL1");
+		paralleltest[27].value = parallel::ENGVAL1value;
+		paralleltest[27].grad = parallel::ENGVAL1grad;
+		paralleltest[27].valgrad = parallel::ENGVAL1valgrad;
+		paralleltest[27].StartingGess = parallel::ENGVAL1StartingGess;
+		//EXTROSNB
+		//FLETCHR
+		paralleltest[29].size = 1000;
+		strcpy(paralleltest[29].name, "FLETCHR");
+		paralleltest[29].value = parallel::FLETCHRvalue;
+		paralleltest[29].grad = parallel::FLETCHRgrad;
+		paralleltest[29].valgrad = parallel::FLETCHRvalgrad;
+		paralleltest[29].StartingGess = parallel::FLETCHRStartingGess;
+		//31-FREUROTH
+		paralleltest[30].size = 5000;
+		strcpy(paralleltest[30].name, "FREUROTH");
+		paralleltest[30].value = parallel::FREUROTHvalue;
+		paralleltest[30].grad = parallel::FREUROTHgrad;
+		paralleltest[30].valgrad = parallel::FREUROTHvalgrad;
+		paralleltest[30].StartingGess = parallel::FREUROTHStartingGess;
+		//32-GENHUMPS
+		paralleltest[31].size = 5000;
+		strcpy(paralleltest[31].name, "GENHUMPS");
+		paralleltest[31].value = parallel::GENHUMPSvalue;
+		paralleltest[31].grad = parallel::GENHUMPSgrad;
+		paralleltest[31].valgrad = parallel::GENHUMPSvalgrad;
+		paralleltest[31].StartingGess = parallel::GENHUMPSStartingGess;
+		//33-GENROSE
+		paralleltest[32].size = 1000;
+		strcpy(paralleltest[32].name, "GENROSE");
+		paralleltest[32].value = parallel::GENROSEvalue;
+		paralleltest[32].grad = parallel::GENROSEgrad;
+		paralleltest[32].valgrad = parallel::GENROSEvalgrad;
+		paralleltest[32].StartingGess = parallel::GENROSEStartingGess;
+		//34-LIARWDH
+		paralleltest[33].size = 5000;
+		strcpy(paralleltest[33].name, "LIARWDH");
+		paralleltest[33].value = parallel::LIARWDHvalue;
+		paralleltest[33].grad = parallel::LIARWDHgrad;
+		paralleltest[33].valgrad = parallel::LIARWDHvalgrad;
+		paralleltest[33].StartingGess = parallel::LIARWDHStartingGess;
+		//35-MOREBV
+		//36-NONCVXU2
+		//37-NONDIA
+		//38-NONDQUAR
+		paralleltest[37].size = 10000;
+		strcpy(paralleltest[37].name, "NONDQUAR");
+		paralleltest[37].value = parallel::NONDQUARvalue;
+		paralleltest[37].grad = parallel::NONDQUARgrad;
+		paralleltest[37].valgrad = parallel::NONDQUARvalgrad;
+		paralleltest[37].StartingGess = parallel::NONDQUARStartingGess;
+		//39-PENALTY1
+		//40-PENALTY2
+		//41-POWER
+		paralleltest[40].size = 1000;
+		strcpy(paralleltest[40].name, "POWER");
+		paralleltest[40].value = parallel::POWERvalue;
+		paralleltest[40].grad = parallel::POWERgrad;
+		paralleltest[40].valgrad = parallel::POWERvalgrad;
+		paralleltest[40].StartingGess = parallel::POWERStartingGess;
+		//42-QARTC
+		//43-SROSENBR
+		paralleltest[42].size = 10000;
+		strcpy(paralleltest[42].name, "SROSENBR");
+		paralleltest[42].value = parallel::SROSENBRvalue;
+		paralleltest[42].grad = parallel::SROSENBRgrad;
+		paralleltest[42].valgrad = parallel::SROSENBRvalgrad;
+		paralleltest[42].StartingGess = parallel::SROSENBRStartingGess;
+		//44-TRIDIA
+		//45-WOODS
+	}
+
 }
