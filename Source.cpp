@@ -13,19 +13,16 @@
 #include<future>
 using namespace std;
 
-vector<double> results;
-
 #include "testFunction.h"
 #include "genericFunctions.h"
 #include "testFunctions.h"
 #include "parallelTestFunctions.h"
 
-const bool USER_MODE = false;
 const int REPETITIONS = 10;
 const int TESTS_LENGTH = 1;
-const int TESTS[] = { 42 };
-const int RANGE_START = 1000000;
-const int RANGE_END = 100000000;
+const int TESTS[] = { 37 };
+const int RANGE_START = 100000;
+const int RANGE_END = 100000;
 
 /*
 ARWHEAD 0 5-7
@@ -175,12 +172,6 @@ void runPerformanceTests() {
 }
 
 int main(void)
-{
-	if (USER_MODE) {
-		//run_cg_descent_Tests();
-	}
-	else {
+{	
 		runPerformanceTests();
-	}
-
 }
