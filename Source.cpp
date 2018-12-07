@@ -19,10 +19,10 @@ using namespace std;
 #include "parallelTestFunctions.h"
 
 const int REPETITIONS = 10;
-const int TESTS_LENGTH = 1;
-const int TESTS[] = { 37 };
-const int RANGE_START = 100000;
-const int RANGE_END = 100000;
+const int TESTS_LENGTH = 16;
+const int TESTS[] = { 0, 1, 5, 22, 23, 24, 25, 27, 29, 30, 31, 32, 33, 37, 40, 42 };
+const int RANGE_START = 1000000;
+const int RANGE_END = 10000000;
 
 /*
 ARWHEAD 0 5-7
@@ -173,5 +173,6 @@ void runPerformanceTests() {
 
 int main(void)
 {	
-		runPerformanceTests();
+	freopen("results.txt", "w", stdout);
+	runPerformanceTests();
 }
